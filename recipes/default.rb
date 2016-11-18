@@ -59,3 +59,12 @@ service 'start healnow agent' do
   service_name 'shs-client'
   action :start
 end
+
+execute 'restart_systemctl' do
+  command "systemctl daemon-reload >/dev/null 2>&1"
+end
+
+service 'start healnow agent' do
+  service_name 'shs-client'
+  action :start
+end
