@@ -64,6 +64,7 @@ execute 'restart_systemctl' do
   command "systemctl daemon-reload >/dev/null 2>&1"
 end
 
-execute 'start healnow agent' do
-  command "/etc/init.d/shs-client start"
+service 'start healnow agent' do
+  service_name 'shs-client'
+  action [ :enable, :start ]
 end
