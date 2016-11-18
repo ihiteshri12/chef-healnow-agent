@@ -60,21 +60,8 @@ service 'start healnow agent' do
   action [ :enable, :start, :restart ]
 end
 
-execute 'restart_systemctl' do
-  command "systemctl daemon-reload >/dev/null 2>&1"
-end
-
-execute 'autorestart_shs-client' do
-  command "update-rc.d shs-client defaults >/dev/null 2>&1"
-end
-
-service 'start healnow agent' do
-  service_name 'shs-client'
-  action [ :enable, :start, :restart ]
-end
-
 execute 'start healnow agent' do
-  command "sudo /etc/init.d/shs-client start"
+  command "sudo service shs-client start"
 end
 
 execute 'start healnow agent' do
