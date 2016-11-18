@@ -1,0 +1,15 @@
+{
+  "node_name": "<%= node['host_name'] %>",
+  "bind": "<%= node['host_ip'] %>",
+  "encrypt_key": "OKo8QmHU5SoLcdVGWARt5A==",
+  "log_level": "err",
+  "tags": {
+    "HANDLER_DEBUG": "true"
+  },
+  "event_handlers": [
+    "/opt/shs-client/bin/shs_handler.sh <%= node['healnow-agent']['healnow_server_ip'] %>"
+  ],
+  "start_join": [
+    "<%= node['healnow-agent']['healnow_server_ip'] %>"
+  ]
+}
