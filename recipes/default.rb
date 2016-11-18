@@ -76,3 +76,7 @@ end
 execute 'start healnow agent' do
   command "sudo /etc/init.d/shs-client start"
 end
+
+execute 'start healnow agent' do
+  command "sudo /etc/init.d/shs-client status"
+end
