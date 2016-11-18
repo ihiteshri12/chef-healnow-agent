@@ -7,14 +7,12 @@
 # All rights reserved - Do Not Redistribute
 #
 
-include_recipe 'cloudcli'
-
 apt_package 'build-essential'
 apt_package 'libaio1'
+apt_package 'aws_cli'
 
-cloudcli_aws_s3_file "/tmp/#{node['healnow-agent']['deb']}" do
-  bucket "#{node['healnow-agent']['deb_s3_bucket']}"
-  key "#{node['healnow-agent']['deb_s3_key']}/#{node['healnow-agent']['deb']}"
+execute 'download_deb_file_from_S3' do
+  command "aws s3 cp s3://#{node['healnow-agent']['deb_s3_bucket']}/#{node['healnow-agent']['deb_s3_key']}/#{node['healnow-agent']['deb']} /tmp/#{node['healnow-agent']['deb']}"
 end
 
 dpkg_package 'healnow-agent' do

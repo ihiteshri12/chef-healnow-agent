@@ -6,5 +6,3 @@ description      'Installs/Configures healnow-agent'
 long_description 'Installs/Configures healnow-agent'
 version          '0.1.0'
 
-depends 'cloudcli'
-
