@@ -9,7 +9,7 @@
 
 apt_package 'build-essential'
 apt_package 'libaio1'
-apt_package 'aws_cli'
+apt_package 'awscli'
 
 execute 'download_deb_file_from_S3' do
   command "aws s3 cp s3://#{node['healnow-agent']['deb_s3_bucket']}/#{node['healnow-agent']['deb_s3_key']}/#{node['healnow-agent']['deb']} /tmp/#{node['healnow-agent']['deb']}"
