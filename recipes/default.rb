@@ -10,11 +10,12 @@
 apt_package 'build-essential'
 apt_package 'libaio1'
 apt_package 'awscli'
+apt_package 'awscli'
 
 ruby_block "get_region" do
     block do
         Chef::Resource::RubyBlock.send(:include, Chef::Mixin::ShellOut)      
-        command = "curl -s http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}'"
+        command = 'curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | jq .region -r'
         command_out = shell_out(command)
         node.set['region'] = command_out.stdout
     end
