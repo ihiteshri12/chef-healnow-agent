@@ -11,8 +11,18 @@ apt_package 'build-essential'
 apt_package 'libaio1'
 apt_package 'awscli'
 
+ruby_block "get_region" do
+    block do
+        Chef::Resource::RubyBlock.send(:include, Chef::Mixin::ShellOut)      
+        command = "curl -s http://169.254.169.254/latest/dynamic/instance-identity/document|grep region|awk -F\" '{print $4}'"
+        command_out = shell_out(command)
+        node.set['region'] = command_out.stdout
+    end
+    action :create
+end
+
 execute 'download_deb_file_from_S3' do
-  command "aws s3 cp s3://#{node['healnow-agent']['deb_s3_bucket']}/#{node['healnow-agent']['deb_s3_key']}/#{node['healnow-agent']['deb']} /tmp/#{node['healnow-agent']['deb']}"
+  command "aws s3 cp s3://#{node['healnow-agent']['deb_s3_bucket']}/#{node['healnow-agent']['deb_s3_key']}/#{node['healnow-agent']['deb']} /tmp/#{node['healnow-agent']['deb']} --region #{node['region']}"
 end
 
 dpkg_package 'healnow-agent' do
