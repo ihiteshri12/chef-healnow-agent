@@ -10,7 +10,7 @@
 apt_package 'build-essential'
 apt_package 'libaio1'
 apt_package 'awscli'
-apt_package 'awscli'
+apt_package 'jq'
 
 ruby_block "get_region" do
     block do
