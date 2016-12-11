@@ -12,7 +12,7 @@ apt_package 'libaio1'
 apt_package 'awscli'
 
 execute 'download_deb_file_from_S3' do
-  command "aws s3 cp s3://#{node['healnow-agent']['deb_s3_bucket']}/#{node['healnow-agent']['deb_s3_key']}/#{node['healnow-agent']['deb']} /tmp/#{node['healnow-agent']['deb']} --region #{node['healnow-agent']['deb_s3_bucket_region']}"
+  command "export AWS_ACCESS_KEY_ID='#{node['healnow-agent']['aws_s3_access_key']}';export AWS_SECRET_ACCESS_KEY='#{node['healnow-agent']['aws_s3_secret_key']}';aws s3 cp s3://#{node['healnow-agent']['deb_s3_bucket']}/#{node['healnow-agent']['deb_s3_key']}/#{node['healnow-agent']['deb']} /tmp/#{node['healnow-agent']['deb']} --region #{node['healnow-agent']['deb_s3_bucket_region']}"
 end
 
 dpkg_package 'healnow-agent' do
