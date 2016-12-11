@@ -7,6 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
+#update cache
+apt_update 'Update the cache' do
+     action :update
+end
+
 apt_package 'build-essential'
 apt_package 'libaio1'
 apt_package 'awscli'
