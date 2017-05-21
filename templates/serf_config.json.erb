@@ -5,6 +5,11 @@
   "log_level": "err",
   "tags": {
     "HANDLER_DEBUG": "true"
+    "SERF_TAG_AWS_API_KEY": "",
+    "SERF_TAG_AWS_API_ENDPOINT": "",
+    "SERF_TAG_CUSTOMER_NAME": "",
+    "SERF_SECONDARY_EBS_VOLUME_PATH": "",
+    "SERF_S3_BUCKET_NAME": ""
   },
   "event_handlers": [
     "/opt/shs-client/bin/shs_handler.sh <%= node['healnow-agent']['healnow_server_ip'] %>"
