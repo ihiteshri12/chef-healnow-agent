@@ -1,15 +1,15 @@
-{
+{mbda_function.lambda_handler
   "node_name": "<%= node['host_ip'] %>",
   "bind": "<%= node['host_ip'] %>",
   "encrypt_key": "OKo8QmHU5SoLcdVGWARt5A==",
   "log_level": "err",
   "tags": {
     "HANDLER_DEBUG": "true"
-    "SERF_TAG_AWS_API_KEY": "",
-    "SERF_TAG_AWS_API_ENDPOINT": "",
-    "SERF_TAG_CUSTOMER_NAME": "",
-    "SERF_SECONDARY_EBS_VOLUME_PATH": "",
-    "SERF_S3_BUCKET_NAME": ""
+    "SERF_TAG_AWS_API_KEY": "<%= node['healnow-agent']['heal_api_key'] %>",
+    "SERF_TAG_AWS_API_ENDPOINT": "<%= node['healnow-agent']['heal_api_endpoint'] %>",
+    "SERF_TAG_CUSTOMER_NAME": "<%= node['healnow-agent']['heal_customer_name'] %>",
+    "SERF_SECONDARY_EBS_VOLUME_PATH": "<%= node['healnow-agent']['heal_secondary_ebs_volume_path'] %>",
+    "SERF_S3_BUCKET_NAME": "<%= node['healnow-agent']['heal_bucket_name'] %>"
   },
   "event_handlers": [
     "/opt/shs-client/bin/shs_handler.sh <%= node['healnow-agent']['healnow_server_ip'] %>"
